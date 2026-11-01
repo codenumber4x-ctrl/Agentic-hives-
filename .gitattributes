@@ -1,0 +1,16 @@
+* text=auto
+
+*.py text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Keep the frozen archive's checkout bytes consistent with SHA256SUMS.
+autoswarm-v1.0.0/** eol=lf

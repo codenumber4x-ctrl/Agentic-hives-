@@ -1,0 +1,134 @@
+external_agents:
+  preferred_order:
+    - claude_code
+    - codex
+    - cursor
+    - opencode
+    - jiuwen
+    - jiuwenswarm
+
+  # model_flag, new_session_flag, resume_session_flag depend on your CLI version.
+  # Leave empty for CLI defaults, or set explicitly for deterministic behavior.
+
+  # Jiuwen and JiuwenSwarm use the same upstream runtime. `jiuwen` selects a
+  # normal single-agent mode; `jiuwenswarm` is one opaque external Team.
+  # Start `jiuwenswarm-start` before using the default gateway transport.
+  jiuwen:
+    enabled: true
+    command: jiuwenswarm
+    transport: gateway
+    # The default also discovers a custom port persisted by JiuwenSwarm.
+    gateway_url: ws://127.0.0.1:19001/tui
+    provider_mode: code.normal
+    run_mode: interactive
+    session_mode: auto
+    interactive_timeout_seconds: 21600
+    approval_mode: auto
+    extra_args: []
+
+  jiuwenswarm:
+    enabled: true
+    command: jiuwenswarm
+    transport: gateway
+    # The default also discovers a custom port persisted by JiuwenSwarm.
+    gateway_url: ws://127.0.0.1:19001/tui
+    provider_mode: team
+    run_mode: interactive
+    session_mode: auto
+    interactive_timeout_seconds: 21600
+    approval_mode: auto
+    extra_args: []
+
+  codex:
+    enabled: true
+    command: codex
+    model: ""
+    model_flag: "--model"
+    session_mode: auto
+    session_id: ""
+    new_session_flag: ""
+    resume_session_flag: ""
+    run_mode: interactive
+    interactive_timeout_seconds: 21600
+    approval_mode: auto
+    extra_args: []
+
+  cursor:
+    enabled: true
+    command: cursor-agent
+    model: ""
+    model_flag: ""
+    session_mode: auto
+    session_id: ""
+    new_session_flag: ""
+    resume_session_flag: ""
+    run_mode: interactive
+    interactive_timeout_seconds: 21600
+    approval_mode: full-auto
+    extra_args: []
+
+  claude_code:
+    enabled: true
+    command: claude
+    model: ""
+    model_flag: "--model"
+    session_mode: auto
+    session_id: ""
+    new_session_flag: ""
+    resume_session_flag: ""
+    run_mode: interactive
+    interactive_timeout_seconds: 21600
+    approval_mode: full-auto
+    extra_args: []
+
+  opencode:
+    enabled: true
+    command: opencode
+    model: ""
+    model_flag: "--model"
+    show_thinking: true
+    session_mode: auto
+    session_id: ""
+    new_session_flag: ""
+    resume_session_flag: ""
+    run_mode: interactive
+    interactive_timeout_seconds: 21600
+    approval_mode: full-auto
+    extra_args: []
+
+native_subagents:
+  general:
+    enabled: true
+    model: ""
+    max_iterations: 24
+    default_isolation: shared
+    background: false
+    allowed_tools: []
+  explore:
+    enabled: true
+    model: ""
+    max_iterations: 16
+    default_isolation: shared
+    background: false
+    allowed_tools: []
+  plan:
+    enabled: true
+    model: ""
+    max_iterations: 16
+    default_isolation: shared
+    background: false
+    allowed_tools: []
+  implement:
+    enabled: true
+    model: ""
+    max_iterations: 24
+    default_isolation: worktree
+    background: false
+    allowed_tools: []
+  verify:
+    enabled: true
+    model: ""
+    max_iterations: 24
+    default_isolation: worktree
+    background: true
+    allowed_tools: []

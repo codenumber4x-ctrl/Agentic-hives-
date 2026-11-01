@@ -1,0 +1,28 @@
+import type { TaskPreferredAgent } from '../types/kanban'
+import { NATIVE_AGENT_LABEL } from './branding'
+
+/** Shared agent catalogue for every Office selector and runtime badge. */
+export const TASK_AGENT_LABELS: Record<TaskPreferredAgent, string> = {
+  native: NATIVE_AGENT_LABEL,
+  codex: 'Codex',
+  claude_code: 'Claude Code',
+  cursor: 'Cursor',
+  opencode: 'OpenCode',
+  jiuwen: 'JiuwenSwarm-single',
+  jiuwenswarm: 'JiuwenSwarm-team',
+}
+
+export const TASK_AGENT_OPTIONS: TaskPreferredAgent[] = [
+  'codex',
+  'jiuwen',
+  'jiuwenswarm',
+  'native',
+  'claude_code',
+  'cursor',
+  'opencode',
+]
+
+export function executionAgentLabel(value?: string): string {
+  const normalized = String(value ?? '').trim().toLowerCase().replaceAll('-', '_') as TaskPreferredAgent
+  return TASK_AGENT_LABELS[normalized] ?? String(value ?? '').trim()
+}

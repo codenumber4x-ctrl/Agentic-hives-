@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "autoswarm"
+version = "2.0.0.dev0"
+description = "Delegate to your installed coding agents from one conversation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.scripts]
+autoswarm = "autoswarm.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/autoswarm"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/docs",
+    "/tests",
+    "/scripts",
+    "/README.md",
+    "/README.zh-CN.md",
+    "/CONTRIBUTING.md",
+    "/LICENSE",
+    "/pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--ignore=autoswarm-v1.0.0"
